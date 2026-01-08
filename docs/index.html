@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HumanLoopML - Human-in-the-Loop ML Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HumanLoopML</h1>
+            <p class="subtitle">Human-in-the-Loop Machine Learning System</p>
+            <p class="description">
+                This system demonstrates how human feedback improves model performance over time.
+                Enter text below to get predictions, and provide feedback when predictions are incorrect.
+            </p>
+        </header>
+
+        <main>
+            <!-- Prediction Section -->
+            <section class="prediction-section">
+                <h2>Text Classification</h2>
+                <div class="input-group">
+                    <textarea 
+                        id="textInput" 
+                        placeholder="Enter news article text here..."
+                        rows="4"
+                    ></textarea>
+                    <button id="predictBtn" class="btn btn-primary">Predict</button>
+                </div>
+                
+                <div id="predictionResult" class="result hidden">
+                    <div class="prediction-info">
+                        <div class="prediction-label">
+                            <span class="label">Prediction:</span>
+                            <span id="predictionText" class="prediction-value"></span>
+                        </div>
+                        <div class="confidence">
+                            <span class="label">Confidence:</span>
+                            <span id="confidenceText" class="confidence-value"></span>
+                        </div>
+                        <div class="model-version">
+                            <span class="label">Model:</span>
+                            <span id="modelVersion" class="version-value"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-buttons">
+                        <button id="correctBtn" class="btn btn-success">Correct ✓</button>
+                        <button id="incorrectBtn" class="btn btn-warning">Incorrect ✗</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feedback Section -->
+            <section id="feedbackSection" class="feedback-section hidden">
+                <h3>Select Correct Label</h3>
+                <div class="label-buttons">
+                    <button class="label-btn" data-label="World">World</button>
+                    <button class="label-btn" data-label="Sports">Sports</button>
+                    <button class="label-btn" data-label="Business">Business</button>
+                    <button class="label-btn" data-label="Sci/Tech">Sci/Tech</button>
+                </div>
+                <button id="submitFeedbackBtn" class="btn btn-primary hidden">Submit Feedback</button>
+            </section>
+
+            <!-- Metrics Section -->
+            <section class="metrics-section">
+                <h2>Model Performance</h2>
+                <div class="metrics-info">
+                    <div class="metric-card">
+                        <div class="metric-label">Current Model</div>
+                        <div id="currentModelVersion" class="metric-value">-</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Accuracy</div>
+                        <div id="currentAccuracy" class="metric-value">-</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">F1 Score (Macro)</div>
+                        <div id="currentF1" class="metric-value">-</div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Status Messages -->
+            <div id="statusMessage" class="status-message hidden"></div>
+        </main>
+
+        <footer>
+            <p>HumanLoopML Demo - Built with FastAPI and scikit-learn</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
