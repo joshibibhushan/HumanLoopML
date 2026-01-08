@@ -1,15 +1,24 @@
 // Configuration - Auto-detects environment
 // For local development: uses localhost
 // For production (GitHub Pages): uses Render backend
-// To update Render URL: Change the RENDER_BACKEND_URL below
 const RENDER_BACKEND_URL = 'https://humanloopml.onrender.com';
 
-// Auto-detect environment
-const isProduction = window.location.hostname !== 'localhost' && 
-                     window.location.hostname !== '127.0.0.1' &&
-                     !window.location.hostname.startsWith('192.168.');
+// Auto-detect environment - more explicit check
+const hostname = window.location.hostname;
+const isLocalhost = hostname === 'localhost' || 
+                    hostname === '127.0.0.1' || 
+                    hostname.startsWith('192.168.') ||
+                    hostname.startsWith('10.') ||
+                    hostname === '';
 
-const API_BASE_URL = isProduction ? RENDER_BACKEND_URL : 'http://localhost:8000';
+const API_BASE_URL = isLocalhost ? 'http://localhost:8000' : RENDER_BACKEND_URL;
+
+// Debug logging (remove in production if desired)
+console.log('Environment detected:', {
+    hostname: hostname,
+    isLocalhost: isLocalhost,
+    apiBaseUrl: API_BASE_URL
+});
 
 // State
 let currentText = '';
