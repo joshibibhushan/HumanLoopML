@@ -34,11 +34,12 @@ ENV/
 *~
 
 # Models and Data
-models/*.joblib
-models/*.pkl
+# Note: Model files are needed for deployment, so we commit them
+# models/*.joblib  # Commented out - needed for Render deployment
+# models/*.pkl
 data/feedback/feedback.json
-data/metrics/*.json
-models/current_version.txt
+# data/metrics/*.json  # Commented out - needed for Render deployment
+# models/current_version.txt  # Commented out - needed for Render deployment
 
 # Keep directory structure
 !models/.gitkeep
