@@ -2,7 +2,7 @@
 // For local development: uses localhost
 // For production (GitHub Pages): uses Render backend
 // To update Render URL: Change the RENDER_BACKEND_URL below
-const RENDER_BACKEND_URL = 'https://humanloopml-api.onrender.com'; // UPDATE THIS with your Render URL
+const RENDER_BACKEND_URL = 'https://humanloopml.onrender.com';
 
 // Auto-detect environment
 const isProduction = window.location.hostname !== 'localhost' && 
