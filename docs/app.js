@@ -1,7 +1,15 @@
-// Configuration - Update this with your backend URL
-// For local development: 'http://localhost:8000'
-// For production: 'https://your-app-name.onrender.com'
-const API_BASE_URL = 'http://localhost:8000';
+// Configuration - Auto-detects environment
+// For local development: uses localhost
+// For production (GitHub Pages): uses Render backend
+// To update Render URL: Change the RENDER_BACKEND_URL below
+const RENDER_BACKEND_URL = 'https://humanloopml-api.onrender.com'; // UPDATE THIS with your Render URL
+
+// Auto-detect environment
+const isProduction = window.location.hostname !== 'localhost' && 
+                     window.location.hostname !== '127.0.0.1' &&
+                     !window.location.hostname.startsWith('192.168.');
+
+const API_BASE_URL = isProduction ? RENDER_BACKEND_URL : 'http://localhost:8000';
 
 // State
 let currentText = '';
